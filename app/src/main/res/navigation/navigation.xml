@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splash_screen_fragment">
+
+    <fragment
+        android:id="@+id/splash_screen_fragment"
+        android:name="com.example.todo.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/splash_screen_fragment">
+        <action
+            android:id="@+id/action_splash_screen_fragment_to_to_do_fragment"
+            app:destination="@id/to_do_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/to_do_fragment"
+        android:name="com.example.todo.ToDoFragment"
+        android:label="ToDoFragment"
+        tools:layout="@layout/to_do_fragment"
+        />
+
+</navigation>
