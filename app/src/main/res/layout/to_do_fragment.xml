@@ -27,17 +27,17 @@
             android:id="@+id/todo_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintTop_toBottomOf="@id/toolbar_spacer"
             app:layout_constraintBottom_toTopOf="@id/edit_field"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
+            <CheckedTextView
                 android:id="@+id/list_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{list}"
-                />
+                android:text="@{list}" />
         </ScrollView>
 
         <EditText
