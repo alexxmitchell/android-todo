@@ -10,13 +10,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todo.databinding.ToDoFragmentBinding
 import kotlinx.android.synthetic.main.to_do_fragment.*
+import kotlinx.android.synthetic.main.to_do_fragment.view.*
 
 
 class ToDoFragment : Fragment() {
     private lateinit var viewModel: ToDoViewModel
     private lateinit var binding: ToDoFragmentBinding
+    private lateinit var todoListAdapter: ToDoAdapter
 
 
     override fun onCreateView(
@@ -35,12 +38,10 @@ class ToDoFragment : Fragment() {
             false
         )
 
+        todoListAdapter= ToDoAdapter()
 //        binding.todoList = viewModel.todoList?.value
         viewModel.todoList.observe(this, Observer { todos ->
-            val stringBuilder = StringBuilder()
-            todos.forEach { item -> stringBuilder.append(item).append("\n") }
-
-            list_item.text = stringBuilder.toString()
+            todoListAdapter.setToDoList(todos)
         })
 
 
@@ -49,6 +50,11 @@ class ToDoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //connects RecyclerView to fragment
+
+        todo_list.layoutManager = LinearLayoutManager(context)
+        todo_list.adapter = todoListAdapter
 
         add_todo.setOnClickListener {
             val text = edit_field.text.toString()
