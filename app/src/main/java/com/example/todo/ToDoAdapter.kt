@@ -4,37 +4,33 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.CheckedTextView
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
     //ViewHolder is a class inside of ToDoAdapter
     var list: List<ToDoItem> = emptyList()
-    var onItemClick: ((ToDoItem) -> Unit)? = null
+    var onItemClickDone: ((ToDoItem) -> Unit)? = null
+    var onItemClickNavigation: ((ToDoItem) -> Unit)? = null
     //pass in a view/layout of row
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView) {
-        val textView: CheckedTextView = itemView.findViewById(R.id.list_item)
-        fun updateToDoList() {
-            if (!textView.isChecked) {
-                textView.isChecked = true
-                textView.setCheckMarkDrawable(R.drawable.ic_check_box_checked)
-            } else {
-                textView.isChecked = false
-                textView.setCheckMarkDrawable(R.drawable.ic_check_box_outline_blank)
-            }
-            textView.paintFlags = textView.paintFlags xor Paint.STRIKE_THRU_TEXT_FLAG
-        }
-
+        val textView: TextView = itemView.findViewById(R.id.list_item)
+        val checkbox: CheckBox = itemView.findViewById(R.id.list_item_check)
 
         init {
             textView.setOnClickListener {
-//                updateToDoList()
+                onItemClickNavigation?.invoke(list[adapterPosition])
+                
+            }
 
-                val extras = FragmentNavigatorExtras( textView to "textView")
-                findNavController().navigate(R.id.item_details)
-                onItemClick?.invoke(list[adapterPosition])
+            checkbox.setOnClickListener {
+                textView.paintFlags = textView.paintFlags xor Paint.STRIKE_THRU_TEXT_FLAG
+                onItemClickDone?.invoke(list[adapterPosition])
                 //finds the clicked item and gets it
 
             }
@@ -50,13 +46,9 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
     //draws the layout for the specific position in the list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView.text = list[position].itemName
-        if (list[position].isDone) {
-            holder.textView.isChecked = true
-            holder.textView.setCheckMarkDrawable(R.drawable.ic_check_box_checked)
-        } else {
-            holder.textView.isChecked = false
-            holder.textView.setCheckMarkDrawable(R.drawable.ic_check_box_outline_blank)
-        }
+        holder.checkbox.isChecked = list[position].isDone
+//
+
 
     }
     override fun getItemCount() = list.size

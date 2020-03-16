@@ -16,7 +16,7 @@ class SplashScreenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.i("Fragment", "Logo Fragment created")
-        return inflater.inflate(R.layout.splash_screen_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_splash_screen, container, false)
     }
     override fun onResume() {
         super.onResume()

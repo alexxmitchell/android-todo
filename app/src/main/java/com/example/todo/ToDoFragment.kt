@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todo.databinding.ToDoFragmentBinding
 import kotlinx.android.synthetic.main.to_do_fragment.*
@@ -55,8 +56,11 @@ class ToDoFragment : Fragment() {
 
         todo_list.layoutManager = LinearLayoutManager(context)
         todo_list.adapter = todoListAdapter
-        todoListAdapter.onItemClick = {
+        todoListAdapter.onItemClickDone = {
             viewModel.updateTodo(it.id)
+        }
+        todoListAdapter.onItemClickNavigation = {
+            findNavController().navigate(R.id.action_to_do_fragment_to_fragment_item_detail)
         }
         add_todo.setOnClickListener {
             val text = edit_field.text.toString()

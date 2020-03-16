@@ -12,13 +12,23 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
-        <CheckedTextView
+        <TextView
             android:id="@+id/list_item"
             android:transitionName="textView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:text="@{list}"
-            android:checkMark="@drawable/ic_check_box_outline_blank"/>
+            />
+
+        <CheckBox
+            android:id="@+id/list_item_check"
+            android:transitionName="textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/list_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/list_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
