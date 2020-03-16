@@ -19,12 +19,11 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
             if (!textView.isChecked) {
                 textView.isChecked = true
                 textView.setCheckMarkDrawable(R.drawable.ic_check_box_checked)
-                textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             } else {
                 textView.isChecked = false
                 textView.setCheckMarkDrawable(R.drawable.ic_check_box_outline_blank)
-                textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
             }
+            textView.paintFlags = textView.paintFlags xor Paint.STRIKE_THRU_TEXT_FLAG
         }
         init {
             textView.setOnClickListener {
