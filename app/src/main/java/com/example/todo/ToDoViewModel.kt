@@ -13,7 +13,7 @@ class ToDoViewModel : ViewModel() {
         _todoList.postValue(mutableListOf())
     }
 
-    fun addTodo(str: String){
+    fun addTodo(str: String) {
         val todoItem = ToDoItem(str)
         val list = _todoList.value?.toMutableList() ?: mutableListOf()
         list.add(todoItem)
@@ -21,6 +21,13 @@ class ToDoViewModel : ViewModel() {
         _todoList.postValue(list)
         Log.i("addToDo", _todoList.value.toString())
     }
+
+    fun updateTodo( id: Long) {
+        val list = _todoList.value?.toMutableList() ?: mutableListOf()
+        val item = list.find { id == it.id }
+        item?.isDone = item?.let { !item.isDone }?: false
+    }
+
 
 //    fun removeTodo(str: String) {
 //        if (_todoList.value != null) {

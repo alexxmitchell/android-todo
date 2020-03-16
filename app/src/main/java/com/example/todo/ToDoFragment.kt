@@ -55,7 +55,9 @@ class ToDoFragment : Fragment() {
 
         todo_list.layoutManager = LinearLayoutManager(context)
         todo_list.adapter = todoListAdapter
-
+        todoListAdapter.onItemClick = {
+            viewModel.updateTodo(it.id)
+        }
         add_todo.setOnClickListener {
             val text = edit_field.text.toString()
             viewModel.addTodo(text)
