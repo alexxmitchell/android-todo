@@ -14,6 +14,7 @@
 
         <CheckedTextView
             android:id="@+id/list_item"
+            android:transitionName="textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"

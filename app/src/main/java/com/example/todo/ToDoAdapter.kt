@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckedTextView
 import android.widget.TextView
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 
 class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
@@ -25,9 +26,14 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
             }
             textView.paintFlags = textView.paintFlags xor Paint.STRIKE_THRU_TEXT_FLAG
         }
+
+
         init {
             textView.setOnClickListener {
-                updateToDoList()
+//                updateToDoList()
+
+                val extras = FragmentNavigatorExtras( textView to "textView")
+                findNavController().navigate(R.id.item_details)
                 onItemClick?.invoke(list[adapterPosition])
                 //finds the clicked item and gets it
 
