@@ -29,8 +29,12 @@
         android:id="@+id/fragment_item_detail"
         android:name="com.example.todo.ItemDetailFragment"
         android:label="ItemDetailFragment"
-        tools:layout="@layout/fragment_item_detail"
-        />
+        tools:layout="@layout/fragment_item_detail">
+        <action android:id="@+id/action_fragment_item_detail_to_to_do_fragment"
+            app:destination="@id/to_do_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_new_item"></fragment>
 
 
 </navigation>
