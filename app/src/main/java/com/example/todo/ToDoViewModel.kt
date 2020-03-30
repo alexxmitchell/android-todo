@@ -9,6 +9,7 @@ class ToDoViewModel : ViewModel() {
     private val _todoList = MutableLiveData<List<ToDoItem>>()
     val todoList : LiveData<List<ToDoItem>>
         get() = _todoList
+    var selectedToDoItem : ToDoItem? = null
     init {
         _todoList.postValue(mutableListOf())
     }
@@ -26,6 +27,10 @@ class ToDoViewModel : ViewModel() {
         val list = _todoList.value?.toMutableList() ?: mutableListOf()
         val item = list.find { id == it.id }
         item?.isDone = item?.let { !item.isDone }?: false
+    }
+
+    fun setSelected(todo: ToDoItem) {
+        selectedToDoItem = todo
     }
 
 

@@ -25,7 +25,7 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
         init {
             textView.setOnClickListener {
                 onItemClickNavigation?.invoke(list[adapterPosition])
-                
+
             }
 
             checkbox.setOnClickListener {

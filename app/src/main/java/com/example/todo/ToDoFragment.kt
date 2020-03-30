@@ -29,8 +29,8 @@ class ToDoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.i("ViewModel", "Called ViewModelProviders.of")
-        viewModel = ViewModelProviders.of(this).get(ToDoViewModel::class.java)
-
+//        viewModel = ViewModelProviders.of(this).get(ToDoViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity!!).get(ToDoViewModel::class.java)
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
             inflater,
@@ -60,11 +60,13 @@ class ToDoFragment : Fragment() {
             viewModel.updateTodo(it.id)
         }
         todoListAdapter.onItemClickNavigation = {
+            viewModel.setSelected(it)
             findNavController().navigate(R.id.action_to_do_fragment_to_fragment_item_detail)
+
         }
         add_todo.setOnClickListener {
             val text = edit_field.text.toString()
-            viewModel.addTodo(text)
+            if (text?.length >= 1) viewModel.addTodo(text)
             Log.i("Fragment", "added a todo")
             edit_field.setText("")
         }
