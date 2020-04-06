@@ -6,6 +6,7 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.jakewharton.threetenabp.AndroidThreeTen
 
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +14,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-//    val navController = this.findNavController(R.id.myNavHostFragment)
+    AndroidThreeTen.init(this)
     setContentView(R.layout.activity_main)
 
 

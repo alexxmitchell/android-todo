@@ -44,6 +44,17 @@
             app:layout_constraintStart_toEndOf="@id/category_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edit_task_name"/>
+
+        <com.kizitonwose.calendarview.CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_category_name"
+            app:layout_constraintBottom_toTopOf="@id/add"
+            app:cv_dayViewResource="@layout/calendar_day_layout"
+            />
         <Button
             android:id="@+id/add"
             android:layout_width="wrap_content"
