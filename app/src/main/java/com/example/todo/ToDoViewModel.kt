@@ -14,10 +14,10 @@ class ToDoViewModel : ViewModel() {
         _todoList.postValue(mutableListOf())
     }
 
-    fun addTodo(str: String) {
-        val todoItem = ToDoItem(str)
+    fun addTodo(todo: ToDoItem) {
+
         val list = _todoList.value?.toMutableList() ?: mutableListOf()
-        list.add(todoItem)
+        list.add(todo)
         Log.i("addToDo", "str")
         _todoList.postValue(list)
         Log.i("addToDo", _todoList.value.toString())

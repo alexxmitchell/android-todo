@@ -23,6 +23,10 @@
         <action
         android:id="@+id/action_to_do_fragment_to_fragment_item_detail"
         app:destination="@id/fragment_item_detail" />
+        <action
+            android:id="@+id/action_to_do_fragment_to_fragment_new_item"
+            app:destination="@id/fragment_new_item"
+            app:popUpTo="@id/fragment_new_item" />
     </fragment>
 
     <fragment
@@ -34,7 +38,14 @@
             app:destination="@id/to_do_fragment"/>
     </fragment>
     <fragment
-        android:id="@+id/fragment_new_item"></fragment>
+        android:id="@+id/fragment_new_item"
+        android:name="com.example.todo.NewItemFragment"
+        android:label="NewItemFragment"
+        tools:layout="@layout/fragment_new_item">
+        <action
+            android:id="@+id/action_fragment_new_item_to_to_do_fragment"
+            app:destination="@id/to_do_fragment" />
+    </fragment>
 
 
 </navigation>

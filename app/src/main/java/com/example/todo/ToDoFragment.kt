@@ -64,11 +64,9 @@ class ToDoFragment : Fragment() {
             findNavController().navigate(R.id.action_to_do_fragment_to_fragment_item_detail)
 
         }
-        add_todo.setOnClickListener {
-            val text = edit_field.text.toString()
-            if (text?.length >= 1) viewModel.addTodo(text)
-            Log.i("Fragment", "added a todo")
-            edit_field.setText("")
+        new_todo.setOnClickListener {
+
+            findNavController().navigate(R.id.action_to_do_fragment_to_fragment_new_item)
         }
     }
 }
