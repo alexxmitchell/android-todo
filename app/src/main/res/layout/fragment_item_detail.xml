@@ -12,6 +12,12 @@
         <variable
             name="todoItemDate"
             type="String" />
+        <variable
+            name="todoItemCategory"
+            type="String" />
+        <variable
+            name="todoItemDeadline"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,12 +31,18 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@{todoItemName}" />
+        <TextView
+            android:id="@+id/item_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/item_name"
+            android:text="@{todoItemCategory}" />
 
         <TextView
             android:id="@+id/item_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/item_name"
+            app:layout_constraintTop_toBottomOf="@id/item_category"
             android:text="@{todoItemStatus}" />
 
         <TextView
@@ -39,11 +51,18 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/item_status"
             android:text="@{todoItemDate}" />
+
+        <TextView
+            android:id="@+id/item_deadline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/item_date_created"
+            android:text="@{todoItemDeadline}" />
         <Button
             android:id="@+id/return_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/item_date_created"
+            app:layout_constraintTop_toBottomOf="@id/item_deadline"
             app:layout_constraintStart_toStartOf="parent"
             android:text="@string/return_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>

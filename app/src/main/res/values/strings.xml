@@ -4,5 +4,10 @@
     <string name="add">Add</string>
     <string name="return_list">Return to List</string>
     <string name="task_name">Task Name</string>
+    <string name="task_name_formatted">Task Name: %s</string>
     <string name="category_name">Category Name</string>
+    <string name="category_name_formatted">Category Name: %s</string>
+    <string name="deadline_formatted">Deadline: %s</string>
+    <string name="date_created_formatted">Date Created: %s</string>
+    <string name="completed_formatted">Completed: %s</string>
 </resources>

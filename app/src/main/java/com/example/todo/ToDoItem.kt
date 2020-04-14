@@ -1,6 +1,8 @@
 package com.example.todo
 
-data class ToDoItem(val itemName: String, var isDone: Boolean = false, val category: String) {
+import java.util.*
+
+data class ToDoItem(val itemName: String, var isDone: Boolean = false, val category: String, val deadline: String) {
     val id = System.currentTimeMillis()
 
 

@@ -1,16 +1,15 @@
 package com.example.todo
 
 import android.graphics.Paint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.CheckedTextView
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.jakewharton.threetenabp.AndroidThreeTen.init
 
 class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
     //ViewHolder is a class inside of ToDoAdapter
@@ -21,9 +20,12 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.list_item)
         val checkbox: CheckBox = itemView.findViewById(R.id.list_item_check)
+        val deadline: TextView = itemView.findViewById(R.id.list_item_deadline)
+        val textContainer: LinearLayout = itemView.findViewById(R.id.textContainer)
+
 
         init {
-            textView.setOnClickListener {
+            textContainer.setOnClickListener {
                 onItemClickNavigation?.invoke(list[adapterPosition])
 
             }
@@ -34,6 +36,8 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
                 //finds the clicked item and gets it
 
             }
+
+
         }
     }
 
@@ -47,7 +51,8 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView.text = list[position].itemName
         holder.checkbox.isChecked = list[position].isDone
-//
+        holder.deadline.text = list[position].deadline
+
 
 
     }

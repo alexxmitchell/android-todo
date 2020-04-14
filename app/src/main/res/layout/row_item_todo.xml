@@ -12,23 +12,38 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
-        <TextView
-            android:id="@+id/list_item"
-            android:transitionName="textView"
+        <LinearLayout
+            android:id="@+id/textContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@{list}"
-            />
+            app:layout_constraintStart_toStartOf="parent">
+            <TextView
+                android:id="@+id/list_item"
+                android:transitionName="textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/list_item_deadline"
+                android:transitionName="textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
 
         <CheckBox
             android:id="@+id/list_item_check"
             android:transitionName="textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/list_item"
+            app:layout_constraintStart_toEndOf="@id/textContainer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/list_item" />
+            app:layout_constraintTop_toTopOf="@id/textContainer" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

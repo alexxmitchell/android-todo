@@ -23,9 +23,11 @@ class ItemDetailFragment: Fragment() {
         viewModel = ViewModelProviders.of(activity!!).get(ToDoViewModel::class.java)
         binding=DataBindingUtil.inflate(inflater, R.layout.fragment_item_detail, container, false)
 
-        binding.todoItemName = viewModel.selectedToDoItem?.itemName
-        binding.todoItemStatus = viewModel.selectedToDoItem?.isDone.toString()
-        binding.todoItemDate = DisplayItem.formatDate(viewModel.selectedToDoItem!!.id)
+        binding.todoItemName = String.format(getString(R.string.task_name_formatted), viewModel.selectedToDoItem?.itemName ?: "")
+        binding.todoItemStatus = String.format(getString(R.string.completed_formatted), viewModel.selectedToDoItem?.isDone.toString())
+        binding.todoItemDate = String.format(getString(R.string.date_created_formatted), DisplayItem.formatDate(viewModel.selectedToDoItem!!.id))
+        binding.todoItemCategory = String.format(getString(R.string.category_name_formatted), viewModel.selectedToDoItem?.category ?: "")
+        binding.todoItemDeadline = String.format(getString(R.string.deadline_formatted), viewModel.selectedToDoItem?.deadline)
         return binding.root
     }
 
