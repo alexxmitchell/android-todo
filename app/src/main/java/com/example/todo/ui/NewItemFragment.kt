@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todo.R
 import com.example.todo.databinding.FragmentNewItemBinding
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
@@ -34,7 +35,8 @@ class NewItemFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProviders.of(activity!!).get(ToDoViewModel::class.java)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_new_item, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_new_item, container, false)
         return binding.root
     }
 
@@ -93,7 +95,12 @@ class NewItemFragment : Fragment() {
         val itemName = edit_task_name.text
         val itemCategory = edit_category_name.text
         val itemDeadline = selectedDate.toString()
-        val toDoItem = ToDoItem(itemName.toString(), false, itemCategory.toString(), itemDeadline)
+        val toDoItem = ToDoItem(
+            itemName.toString(),
+            false,
+            itemCategory.toString(),
+            itemDeadline
+        )
         viewModel.addTodo(toDoItem)
     }
 }

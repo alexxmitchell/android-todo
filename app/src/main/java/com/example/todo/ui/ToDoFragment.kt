@@ -1,6 +1,7 @@
-package com.example.todo
+package com.example.todo.ui
 
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,13 +13,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.todo.R
 import com.example.todo.databinding.ToDoFragmentBinding
 import kotlinx.android.synthetic.main.to_do_fragment.*
-import kotlinx.android.synthetic.main.to_do_fragment.view.*
 
 
 class ToDoFragment : Fragment() {
-    private lateinit var viewModel: ToDoViewModel
+    private val viewModel: ToDoViewModel by lazy {
+        ViewModelProviders.of(activity!!).get(ToDoViewModel::class.java)
+    }
     private lateinit var binding: ToDoFragmentBinding
     private lateinit var todoListAdapter: ToDoAdapter
 
@@ -28,9 +31,8 @@ class ToDoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.i("ViewModel", "Called ViewModelProviders.of")
-//        viewModel = ViewModelProviders.of(this).get(ToDoViewModel::class.java)
-        viewModel = ViewModelProviders.of(activity!!).get(ToDoViewModel::class.java)
+
+
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
             inflater,

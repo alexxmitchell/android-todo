@@ -1,21 +1,26 @@
-package com.example.todo
+package com.example.todo.ui
 
+import android.app.Application
+import android.content.Context
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.todo.db.TodoRepository
 
-class ToDoViewModel : ViewModel() {
+class ToDoViewModel(applicationContext: Application) : AndroidViewModel(applicationContext) {
+    private val todoRepository : TodoRepository = TodoRepository(applicationContext)
     private val _todoList = MutableLiveData<List<ToDoItem>>()
     val todoList : LiveData<List<ToDoItem>>
         get() = _todoList
     var selectedToDoItem : ToDoItem? = null
     init {
-        _todoList.postValue(mutableListOf())
+        _todoList.postValue(todoRepository.getTodos().toMutableList()?: mutableListOf())
     }
 
     fun addTodo(todo: ToDoItem) {
-
+        todoRepository.insertTodo(todo)
         val list = _todoList.value?.toMutableList() ?: mutableListOf()
         list.add(todo)
         Log.i("addToDo", "str")

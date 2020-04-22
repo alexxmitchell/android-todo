@@ -1,11 +1,9 @@
-package com.example.todo
+package com.example.todo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
+import com.example.todo.R
 import com.jakewharton.threetenabp.AndroidThreeTen
 
 

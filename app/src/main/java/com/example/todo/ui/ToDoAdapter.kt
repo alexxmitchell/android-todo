@@ -1,15 +1,12 @@
-package com.example.todo
+package com.example.todo.ui
 
 import android.graphics.Paint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.jakewharton.threetenabp.AndroidThreeTen.init
+import com.example.todo.R
 
 class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
     //ViewHolder is a class inside of ToDoAdapter
@@ -43,7 +40,7 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
 
 
     // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
        val textView = LayoutInflater.from(parent.context).inflate(R.layout.row_item_todo, parent, false)
         return ViewHolder(textView)
     }
