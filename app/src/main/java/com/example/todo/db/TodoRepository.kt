@@ -1,8 +1,11 @@
 package com.example.todo.db
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import com.example.todo.ui.ToDoItem
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 //applicationContext - can see everything inside the app
@@ -13,13 +16,18 @@ class TodoRepository(applicationContext: Context) {
         TodoDatabase::class.java, "database-todos").build()
 
     fun getTodos(): List<ToDoItem>{
-        //.map -> maps each of the list items
-        return db.todoDao().getAll().map { mapRoomTodoToTodoItem(it) }
+        //maps each of the livedata list items
+        return db.todoDao().getAll().value?.map { mapRoomTodoToTodoItem(it) } ?: emptyList()
     }
 
     fun insertTodo(todoItem: ToDoItem){
-        db.todoDao().insertAll(mapTodoItemToRoomTodo(todoItem))
+        //wrapped in coroutine
+        GlobalScope.launch {
+            val index = db.todoDao().insertOne(mapTodoItemToRoomTodo(todoItem))
+            Log.i(index.toString(), "index value")
+        }
     }
+
 
     fun mapRoomTodoToTodoItem(roomTodo: RoomTodo) = ToDoItem(
         itemName = roomTodo.itemName,

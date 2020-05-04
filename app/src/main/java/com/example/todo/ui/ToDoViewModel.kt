@@ -3,14 +3,12 @@ package com.example.todo.ui
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.todo.db.TodoRepository
-
-class ToDoViewModel(applicationContext: Application) : AndroidViewModel(applicationContext) {
-    private val todoRepository : TodoRepository = TodoRepository(applicationContext)
+//TodoviewModel has the context from todoRepository from the appModule -- being injected
+class ToDoViewModel( private val todoRepository : TodoRepository) : ViewModel() {
     private val _todoList = MutableLiveData<List<ToDoItem>>()
     val todoList : LiveData<List<ToDoItem>>
         get() = _todoList

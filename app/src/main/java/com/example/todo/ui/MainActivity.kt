@@ -5,10 +5,11 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.example.todo.R
 import com.jakewharton.threetenabp.AndroidThreeTen
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class MainActivity : AppCompatActivity() {
-  private lateinit var viewModel: ToDoViewModel
+//  private val viewModel: ToDoViewModel by sharedViewModel()
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
@@ -20,7 +21,6 @@ class MainActivity : AppCompatActivity() {
 
   override fun onStart() {
     super.onStart()
-    viewModel = ViewModelProviders.of(this).get(ToDoViewModel::class.java)
 
   }
 

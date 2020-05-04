@@ -19,13 +19,14 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import kotlinx.android.synthetic.main.calendar_day_layout.view.*
 import kotlinx.android.synthetic.main.fragment_new_item.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.threeten.bp.LocalDate
 import org.threeten.bp.YearMonth
 import org.threeten.bp.temporal.WeekFields
 import java.util.*
 
 class NewItemFragment : Fragment() {
-    private lateinit var viewModel: ToDoViewModel
+    private val viewModel: ToDoViewModel by sharedViewModel()
     private lateinit var binding: FragmentNewItemBinding
     private var selectedDate: LocalDate? = null
 
@@ -34,7 +35,6 @@ class NewItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProviders.of(activity!!).get(ToDoViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_new_item, container, false)
         return binding.root

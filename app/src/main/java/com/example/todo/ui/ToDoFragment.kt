@@ -16,12 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todo.R
 import com.example.todo.databinding.ToDoFragmentBinding
 import kotlinx.android.synthetic.main.to_do_fragment.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class ToDoFragment : Fragment() {
-    private val viewModel: ToDoViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(ToDoViewModel::class.java)
-    }
+    private val viewModel: ToDoViewModel by sharedViewModel() //looks in appModules and finds todoviewmodel
     private lateinit var binding: ToDoFragmentBinding
     private lateinit var todoListAdapter: ToDoAdapter
 
