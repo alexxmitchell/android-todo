@@ -7,7 +7,7 @@ data class ToDoItem(val itemName: String,
                     val category: String,
                     val deadline: String,
                     val addedDate: Long = System.currentTimeMillis()) {
-    val id = System.currentTimeMillis()
+                    val id = addedDate
 
 
 }

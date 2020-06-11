@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.todo.db.TodoRepository
 //TodoviewModel has the context from todoRepository from the appModule -- being injected
@@ -13,8 +14,11 @@ class ToDoViewModel( private val todoRepository : TodoRepository) : ViewModel() 
     val todoList : LiveData<List<ToDoItem>>
         get() = _todoList
     var selectedToDoItem : ToDoItem? = null
+    val todoObserver = Observer<List<ToDoItem>>{
+        _todoList.postValue(it)
+    }
     init {
-        _todoList.postValue(todoRepository.getTodos().toMutableList()?: mutableListOf())
+       todoRepository.liveDataTodos.observeForever(todoObserver)
     }
 
     fun addTodo(todo: ToDoItem) {

@@ -69,6 +69,17 @@ dependencies {
 
      // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
+    def mock_version = "1.10.0"
+    testImplementation "io.mockk:mockk:${mock_version}"
+
+    def androidxJunitVersion = "1.1.0"
+    def junitVersion = "4.12"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "androidx.test.ext:junit:${androidxJunitVersion}"
+
+    def coreTestingVersion = "2.0.0"
+    testImplementation "androidx.arch.core:core-testing:${coreTestingVersion}"
+
 
     // Koin for Kotlin apps
     def koin_version = "2.0.1"
