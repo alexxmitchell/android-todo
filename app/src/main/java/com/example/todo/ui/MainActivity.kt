@@ -1,7 +1,10 @@
 package com.example.todo.ui
 
+import android.database.Cursor
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.CalendarContract
 import androidx.lifecycle.ViewModelProviders
 import com.example.todo.R
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -23,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     super.onStart()
 
   }
+
+
 
 //  fun addItem(item: String) : List {
 ////takes the list and pushes into it

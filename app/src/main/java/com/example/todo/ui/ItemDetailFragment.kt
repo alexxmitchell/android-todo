@@ -1,6 +1,9 @@
 package com.example.todo.ui
 
+import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,5 +42,42 @@ class ItemDetailFragment: Fragment() {
             findNavController().navigate(R.id.action_fragment_item_detail_to_to_do_fragment)
         }
 
+        binding.calendarButton.setOnClickListener {
+            addToCalendar()
+        }
+
+    }
+
+    private fun addToCalendar(){
+        val item = viewModel.selectedToDoItem
+
+        if(item != null){
+
+        val deadlineList = item.deadline.split('-').map {
+            it.toInt()
+        }
+        val startMillis: Long = Calendar.getInstance().run {
+
+            set(deadlineList[0], deadlineList[1], deadlineList[2], 7, 30)
+            timeInMillis
+        }
+        val endMillis: Long = Calendar.getInstance().run {
+            set(deadlineList[0], deadlineList[1], deadlineList[2], 8, 30)
+            timeInMillis
+        }
+        val intent = Intent(Intent.ACTION_INSERT)
+            .setData(CalendarContract.Events.CONTENT_URI)
+            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startMillis)
+            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endMillis)
+            .putExtra(CalendarContract.Events.TITLE, item.itemName)
+            .putExtra(CalendarContract.Events.DESCRIPTION, item.category)
+//            .putExtra(CalendarContract.Events.r, "The gym")
+            .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY)
+        startActivity(intent)
+
+//            val reminder = Intent(Intent.ACTION_INSERT)
+//                .setData(CalendarContract.Reminders.CONTENT_URI)
+//                .putExtra(CalendarContract.ACTION_EVENT_REMINDER)
+    }
     }
 }

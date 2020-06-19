@@ -10,4 +10,6 @@
     <string name="deadline_formatted">Deadline: %s</string>
     <string name="date_created_formatted">Date Created: %s</string>
     <string name="completed_formatted">Completed: %s</string>
+    <string name="add_to_calendar">Add to Calendar</string>
+    <string name="return_to_list">Return to List</string>
 </resources>
