@@ -1,7 +1,9 @@
 package com.example.todo.models
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Comic (
     //map object class to json class; all variables required to build Comic class
     @Json(name = "month") val comicMonth: String,

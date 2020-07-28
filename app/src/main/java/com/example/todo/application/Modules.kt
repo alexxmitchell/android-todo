@@ -5,6 +5,7 @@ import com.example.todo.db.TodoDatabase
 import com.example.todo.db.TodoRepository
 import com.example.todo.network.XkcdService
 import com.example.todo.ui.ToDoViewModel
+import com.example.todo.ui.comic.ComicViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -14,11 +15,12 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
+//uses Koin dependency injection
 val appModule = module {
 
     // single instance of TodoRepository with db; looks for the database in the module
     single<TodoRepository> { TodoRepository(db = get()) }
+
 
     single {
         Room.databaseBuilder(
@@ -30,6 +32,7 @@ val appModule = module {
             .build()
     }
 
+    //webclient
     single {
         //tells which client to make the call from
         //val client = OkHttpClient.Builder().build()
@@ -42,4 +45,5 @@ val appModule = module {
 
     // Simple Presenter Factory
     viewModel { ToDoViewModel(todoRepository = get()) }
+    viewModel { ComicViewModel(xkcdService = get()) }
 }

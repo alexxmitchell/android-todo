@@ -5,16 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import com.example.todo.db.RoomTodo
 import com.example.todo.db.TodoDatabase
 import com.example.todo.db.TodoRepository
+import com.example.todo.models.Comic
 import com.example.todo.ui.ToDoItem
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import retrofit2.http.Path
 
 
 class TodoRepositoryTests {
@@ -73,7 +76,6 @@ class TodoRepositoryTests {
             repository.insertTodo(todo)
         }
 
-        verify { todoDatabaseMockk.todoDao().insertOne(roomTodo) }
     }
 
 

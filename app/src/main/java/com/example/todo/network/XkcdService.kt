@@ -9,12 +9,12 @@ interface XkcdService {
     //not a function, @Get is an annotation
     @GET("info.0.json")
     //retrofit builds the function body, we don't have to
-    //Call - async return type
-    fun getCurrentComic(): Call<Comic>
-
+    //with retrofit 2.6.0, retrofit has its own coroutine support (suspend)
+    //suspend - does one line at a time
+    suspend fun getCurrentComic(): Comic
 
     @GET("{comic}/info.0.json")
-    fun getSpecificComic(@Path("comic") comic: String): Call<Comic>
+    suspend fun getSpecificComic(@Path("comic") comic: String): Comic
 }
 
 //have to give the Retrofit builder the base url
